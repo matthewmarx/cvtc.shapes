@@ -14,6 +14,7 @@ public class Cuboid extends Shape {
 	private float width = 0f;
 	private float height = 0f;
 	private float depth = 0f;
+	private String message = "";
 	
 	// Constructor
 	public Cuboid(float width, float height, float depth) {
@@ -61,7 +62,11 @@ public class Cuboid extends Shape {
 
 	@Override
 	public void render() {
-		String message = "Cuboid Dimensions: Width = " + width + ". Height = " + height + ". Depth = " + depth + ". Surface area = " + surfaceArea() + ". Volume = " + volume();
+		if (width <= 0 || height <= 0 || depth <= 0) {
+			message = "Cuboid error! Cannot use negative values!";
+		} else {
+		message = "Cuboid Dimensions: Width = " + width + ". Height = " + height + ". Depth = " + depth + ". Surface area = " + surfaceArea() + ". Volume = " + volume();
+		}
 		JOptionPane.showMessageDialog(null, message);		
 	}	
 }

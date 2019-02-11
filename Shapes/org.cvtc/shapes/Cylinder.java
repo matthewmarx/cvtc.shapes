@@ -11,8 +11,9 @@ import javax.swing.JOptionPane;
 public class Cylinder extends Shape{
 
 	//Attributes
-	private float radius = 0f;
-	private float height = 0f;
+	private float radius = 0.0f;
+	private float height = 0.0f;
+	private String message = "";
 	
 	// Constructor
 	public Cylinder(float radius, float height) {
@@ -48,8 +49,12 @@ public class Cylinder extends Shape{
 	
 	@Override
 	public void render() {
-		String message = "Cylinder Dimensions: Radius = " + radius + ". Height = " + height + ". Surface area = " + surfaceArea() + ". Volume = " + volume();
-		JOptionPane.showMessageDialog(null, message);		
-	}	
+		if (radius <= 0 || height <= 0) {
+			message = "Cylinder error! Cannot use negative values!";
+		} else {
+		message = "Cylinder Dimensions: Radius = " + radius + ". Height = " + height + ". Surface area = " + surfaceArea() + ". Volume = " + volume();	
+		}	
+		JOptionPane.showMessageDialog(null, message);
+	}
 		
 }

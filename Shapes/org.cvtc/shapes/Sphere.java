@@ -12,7 +12,7 @@ public class Sphere extends Shape {
 
 	// Attributes
 	private float radius = 0f;
-
+	private String message = "";
 	
 	// Constructor
 	public Sphere(float radius) {
@@ -42,7 +42,11 @@ public class Sphere extends Shape {
 
 	@Override
 	public void render() {
-		String message = "Sphere Dimensions: Radius = " + radius + ". Surface area = " + surfaceArea() + ". Volume = " + volume();
+		if (radius <= 0) {
+			message = "Sphere error! Cannot use negative values!";
+		} else {
+		message = "Sphere Dimensions: Radius = " + radius + ". Surface area = " + surfaceArea() + ". Volume = " + volume();
+		}
 		JOptionPane.showMessageDialog(null, message);	
 	}
 	
