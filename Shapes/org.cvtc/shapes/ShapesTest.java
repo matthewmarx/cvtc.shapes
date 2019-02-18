@@ -15,11 +15,16 @@ public class ShapesTest {
 	 */
 	
 	public static void main(String[] args) {
-		Cuboid cuboid = new Cuboid(1, 1, 1);
+		
+		Dialog messageBox = new MessageBox();
+		
+		Cuboid cuboid = new Cuboid(messageBox, 1, 1, 1);
 		cuboid.render();
-		Cylinder cylinder = new Cylinder(1, 1);
+		
+		Cylinder cylinder = new Cylinder(messageBox, 1, 1);
 		cylinder.render();
-		Sphere sphere = new Sphere(1);
+		
+		Sphere sphere = new Sphere(messageBox, 1);
 		sphere.render();
 	}
 }

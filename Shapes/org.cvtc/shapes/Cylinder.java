@@ -1,25 +1,28 @@
 package shapes;
 
-import javax.swing.JOptionPane;
-
 /**
  * @author Matthew M Marx
  *
  */
 
 
-public class Cylinder extends Shape{
+public class Cylinder extends Shape implements Renderer{
 
 	//Attributes
 	private float radius = 0.0f;
 	private float height = 0.0f;
-	private String message = "";
 	
 	// Constructor
-	public Cylinder(float radius, float height) {
-		super();
-		this.radius = radius;
-		this.height = height;
+	public Cylinder(Dialog messageBox, float radius, float height) {
+		super(messageBox);
+		if (radius < 0 || height < 0) {
+			System.out.println("Negative Cylinder values detected: Defaulting all values to 1");
+			this.radius = 1;
+			this.height = 1;
+		} else {
+			this.radius = radius;
+			this.height = height;
+		}
 	}
 	
 	// Getter/Setter
@@ -38,23 +41,21 @@ public class Cylinder extends Shape{
 	
 	// Overrides/Methods
 	@Override
-	public float surfaceArea() {		
+	public float getSurfaceArea() {		
 		return (float) ((2 * Math.PI * radius * height) + (2 * Math.PI * Math.pow(radius, 2)));
 	}
 	
 	@Override
-	public float volume() {		
+	public float getVolume() {		
 		return (float) (Math.PI * Math.pow(radius, 2) * height);
 	}
 	
 	@Override
 	public void render() {
-		if (radius <= 0 || height <= 0) {
-			message = "Cylinder error! Cannot use negative values!";
-		} else {
-		message = "Cylinder Dimensions: Radius = " + radius + ". Height = " + height + ". Surface area = " + surfaceArea() + ". Volume = " + volume();	
-		}	
-		JOptionPane.showMessageDialog(null, message);
+		messageBox.show("Cylinder: Radius = " + this.getRadius() +
+				 " Height = " + this.getHeight() +
+				 " Surface Area = " + this.getSurfaceArea() +
+				 " Volume = " + this.getVolume(), "Cylinder");
 	}
 		
 }

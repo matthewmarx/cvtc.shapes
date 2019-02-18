@@ -1,23 +1,24 @@
 package shapes;
 
-import javax.swing.JOptionPane;
-
 /**
  * @author Matthew M Marx
  *
  */
 
-
-public class Sphere extends Shape {
+public class Sphere extends Shape implements Renderer {
 
 	// Attributes
 	private float radius = 0f;
-	private String message = "";
 	
 	// Constructor
-	public Sphere(float radius) {
-		super();
+	public Sphere(Dialog messageBox, float radius) {
+		super(messageBox);
+		if (radius < 0) {
+			this.radius = 1;
+			System.out.println("Negative Sphere values detected: Defaulting all values to 1");
+		} else {
 		this.radius = radius;
+		}
 	}
 
 	// Getter/Setter
@@ -31,24 +32,19 @@ public class Sphere extends Shape {
 
 	// Overrides/Methods
 	@Override
-	public float surfaceArea() {		
+	public float getSurfaceArea() {	
 		return (float) (4 * Math.PI * Math.pow(radius, 2));
 	}
 
 	@Override
-	public float volume() {		
+	public float getVolume() {		
 		return (float) (4 * Math.PI * Math.pow(radius, 3)) / 3;
 	}
 
 	@Override
 	public void render() {
-		if (radius <= 0) {
-			message = "Sphere error! Cannot use negative values!";
-		} else {
-		message = "Sphere Dimensions: Radius = " + radius + ". Surface area = " + surfaceArea() + ". Volume = " + volume();
-		}
-		JOptionPane.showMessageDialog(null, message);	
-	}
-	
-	
+		messageBox.show("Sphere: Radius = " + this.getRadius() +
+				 " Surface Area = " + this.getSurfaceArea() +
+				 " Volume = " + this.getVolume(), "Sphere");
+	}	
 }

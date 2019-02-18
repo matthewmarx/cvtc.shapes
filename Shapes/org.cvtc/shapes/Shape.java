@@ -9,7 +9,15 @@ package shapes;
  */
 
 public abstract class Shape {
-	public abstract float surfaceArea();
-	public abstract float volume();
-	public abstract void render();
+	protected Dialog messageBox;
+	public abstract float getSurfaceArea();
+	public abstract float getVolume();
+	
+	private void setMessageBox(Dialog messageBox) {
+		this.messageBox = messageBox;
+	}
+	
+	protected Shape(Dialog messageBox) {
+		this.messageBox = messageBox;
+	}
 }
