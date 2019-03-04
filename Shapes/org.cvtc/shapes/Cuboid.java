@@ -26,7 +26,7 @@ public class Cuboid extends Shape implements Renderer{
 			this.height = height;
 			this.depth = depth;
 		}
-	}
+	}	
 
 	// Getter/Setter
 	public float getWidth() {
